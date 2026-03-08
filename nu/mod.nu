@@ -4,7 +4,6 @@
 # Re-export abbreviation commands (needed for executehostcommand keybindings)
 export use abbreviations/mod.nu [
     nemo-expand-abbrev
-    nemo-expand-abbrev-enter
 ]
 
 # Re-export keybinding commands (needed for executehostcommand keybindings)

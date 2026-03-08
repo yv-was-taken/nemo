@@ -1,5 +1,5 @@
 # nemo abbreviation engine
-# Expands abbreviations in command position when pressing space or enter
+# Expands abbreviations in command position when pressing space
 
 use defaults.nu nemo-default-abbrevs
 
@@ -48,29 +48,6 @@ export def nemo-expand-abbrev [] {
     }
 }
 
-# Expand abbreviation and execute (for enter key)
-export def nemo-expand-abbrev-enter [] {
-    let line = (commandline)
-    let cursor = (commandline get-cursor)
-    let before = ($line | str substring 0..$cursor)
-    let parts = ($before | split row ' ')
-    let last_word = ($parts | last)
-
-    if (not ($last_word | is-empty)) {
-        let is_cmd_pos = (is-command-position $before $last_word)
-
-        if $is_cmd_pos and ($last_word in $env.NEMO_ABBREVS) {
-            let expanded = ($env.NEMO_ABBREVS | get $last_word)
-            let prefix_len = $cursor - ($last_word | str length)
-            let prefix = ($line | str substring 0..$prefix_len)
-            let after = ($line | str substring $cursor..)
-            commandline edit --replace $"($prefix)($expanded)($after)"
-        }
-    }
-
-    # Actual submission is handled by the { send: enter } event in the keybinding
-}
-
 # Keybinding definitions for the abbreviation engine
 export def nemo-abbrev-keybindings [] {
     [
@@ -80,16 +57,6 @@ export def nemo-abbrev-keybindings [] {
             keycode: space
             mode: [emacs vi_insert]
             event: { send: executehostcommand, cmd: "nemo-expand-abbrev" }
-        }
-        {
-            name: nemo_abbrev_enter
-            modifier: none
-            keycode: enter
-            mode: [emacs vi_insert]
-            event: [
-                { send: executehostcommand, cmd: "nemo-expand-abbrev-enter" }
-                { send: enter }
-            ]
         }
         {
             name: nemo_literal_space
