@@ -16,7 +16,8 @@ export def nemo-load-abbrevs [] {
 # Check if the cursor is at a command position
 # (start of line, or immediately after | or ;)
 def is-command-position [before: string, word: string]: nothing -> bool {
-    let trimmed = ($before | str substring 0..(-1 * ($word | str length)) | str trim --right)
+    let prefix_len = ($before | str length) - ($word | str length)
+    let trimmed = ($before | str substring 0..<$prefix_len | str trim --right)
     ($trimmed | is-empty) or ($trimmed | str ends-with "|") or ($trimmed | str ends-with ";")
 }
 
@@ -24,7 +25,7 @@ def is-command-position [before: string, word: string]: nothing -> bool {
 export def nemo-expand-abbrev [] {
     let line = (commandline)
     let cursor = (commandline get-cursor)
-    let before = ($line | str substring 0..$cursor)
+    let before = ($line | str substring 0..<$cursor)
     let parts = ($before | split row ' ')
     let last_word = ($parts | last)
 
@@ -38,7 +39,7 @@ export def nemo-expand-abbrev [] {
     if $is_cmd_pos and ($last_word in $env.NEMO_ABBREVS) {
         let expanded = ($env.NEMO_ABBREVS | get $last_word)
         let prefix_len = $cursor - ($last_word | str length)
-        let prefix = ($line | str substring 0..$prefix_len)
+        let prefix = ($line | str substring 0..<$prefix_len)
         let after = ($line | str substring $cursor..)
         let new_line = $"($prefix)($expanded) ($after)"
         commandline edit --replace $new_line
