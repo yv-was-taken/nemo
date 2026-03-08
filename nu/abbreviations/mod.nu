@@ -68,7 +68,7 @@ export def nemo-expand-abbrev-enter [] {
         }
     }
 
-    commandline edit --insert (char newline)
+    # Actual submission is handled by the { send: enter } event in the keybinding
 }
 
 # Keybinding definitions for the abbreviation engine
@@ -86,7 +86,10 @@ export def nemo-abbrev-keybindings [] {
             modifier: none
             keycode: enter
             mode: [emacs vi_insert]
-            event: { send: executehostcommand, cmd: "nemo-expand-abbrev-enter" }
+            event: [
+                { send: executehostcommand, cmd: "nemo-expand-abbrev-enter" }
+                { send: enter }
+            ]
         }
         {
             name: nemo_literal_space
