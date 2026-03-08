@@ -1,0 +1,12 @@
+# Build artifacts (Phase 2)
+target/
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
