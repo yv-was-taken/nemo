@@ -6,7 +6,7 @@ use std/assert
 
 # Test 1: Abbreviations loaded (empty by default, like fish)
 let abbrevs = $env.NEMO_ABBREVS
-assert equal ($abbrevs | describe) "record"
+assert ($abbrevs | describe | str starts-with "record")
 print "✓ Abbreviations loaded correctly"
 
 # Test 2: Directory history initialized
