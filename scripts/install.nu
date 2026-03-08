@@ -54,7 +54,7 @@ def main [] {
     print $"    • Type (ansi yellow)gs(ansi reset) + space → expands to (ansi yellow)git status(ansi reset)"
     print $"    • (ansi yellow)Alt+S(ansi reset) toggles sudo prefix"
     print $"    • (ansi yellow)Alt+Left/Right(ansi reset) navigates directory history"
-    print $"    • (ansi yellow)Ctrl+Space(ansi reset) inserts literal space (no expansion)"
+    print $"    • (ansi yellow)Ctrl+Space(ansi reset) inserts literal space \(no expansion\)"
     print ""
     print $"  Customize abbreviations: (ansi cyan)~/.config/nemo/abbrevs.nuon(ansi reset)"
     print $"  Disable nemo: (ansi yellow)overlay hide nemo(ansi reset)"
