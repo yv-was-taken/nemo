@@ -4,11 +4,9 @@
 
 use std/assert
 
-# Test 1: Abbreviations loaded
+# Test 1: Abbreviations loaded (empty by default, like fish)
 let abbrevs = $env.NEMO_ABBREVS
-assert equal ($abbrevs | get gs) "git status"
-assert equal ($abbrevs | get gp) "git push"
-assert equal ($abbrevs | get dc) "docker compose"
+assert equal ($abbrevs | describe) "record"
 print "✓ Abbreviations loaded correctly"
 
 # Test 2: Directory history initialized
