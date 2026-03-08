@@ -100,6 +100,25 @@ export def nemo-keybindings [] {
             mode: [emacs vi_insert]
             event: { send: executehostcommand, cmd: "nemo-edit-command" }
         }
+        # Fish-style: Right arrow accepts entire autosuggestion (falls back to move right)
+        {
+            name: nemo_accept_hint
+            modifier: none
+            keycode: right
+            mode: [emacs vi_insert]
+            event: [
+                { send: historyhintcomplete }
+                { edit: moveright }
+            ]
+        }
+        # Accept one word of autosuggestion
+        {
+            name: nemo_accept_hint_word
+            modifier: control
+            keycode: right
+            mode: [emacs vi_insert]
+            event: { send: historyhintwordcomplete }
+        }
     ]
 }
 
