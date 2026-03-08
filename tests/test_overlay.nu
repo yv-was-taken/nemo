@@ -21,7 +21,7 @@ print "✓ External completer configured"
 
 # Test 4: Keybindings added
 let nemo_bindings = ($env.config.keybindings | where name =~ "nemo")
-assert (($nemo_bindings | length) >= 7)
+assert (($nemo_bindings | length) >= 8)
 print $"✓ ($nemo_bindings | length) nemo keybindings added"
 
 # Test 5: Prompt set

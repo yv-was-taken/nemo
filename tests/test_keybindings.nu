@@ -13,8 +13,6 @@ let nemo_bindings = ($bindings | where name =~ "nemo")
 
 # Test: All expected keybindings are registered
 let expected_names = [
-    "nemo_abbrev_space"
-    "nemo_literal_space"
     "nemo_sudo_toggle"
     "nemo_cd_parent"
     "nemo_cd_back"

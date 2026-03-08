@@ -19,16 +19,9 @@ if ($config_path | path exists) {
     print "✓ No custom abbreviations file (using defaults)"
 }
 
-# Test: Abbreviation keybindings registered
+# Test: No abbreviation keybindings (space expansion removed)
 let abbrev_bindings = ($env.config.keybindings | where name =~ "nemo_abbrev")
-assert (($abbrev_bindings | length) >= 1)
-let space_binding = ($abbrev_bindings | where name == "nemo_abbrev_space")
-assert equal ($space_binding | length) 1
-print "✓ Abbreviation space keybinding registered"
-
-# Test: Literal space keybinding registered (Ctrl+Space escape hatch)
-let literal_space = ($env.config.keybindings | where name == "nemo_literal_space")
-assert equal ($literal_space | length) 1
-print "✓ Ctrl+Space literal space keybinding registered"
+assert equal ($abbrev_bindings | length) 0
+print "✓ No abbreviation keybindings (Ctrl+Enter history hint is sufficient)"
 
 print "\n✓ All abbreviation tests passed"

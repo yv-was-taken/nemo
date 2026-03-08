@@ -51,20 +51,5 @@ export def nemo-expand-abbrev [] {
 
 # Keybinding definitions for the abbreviation engine
 export def nemo-abbrev-keybindings [] {
-    [
-        {
-            name: nemo_abbrev_space
-            modifier: none
-            keycode: space
-            mode: [emacs vi_insert]
-            event: { send: executehostcommand, cmd: "nemo-expand-abbrev" }
-        }
-        {
-            name: nemo_literal_space
-            modifier: control
-            keycode: space
-            mode: [emacs vi_insert]
-            event: { edit: insertchar, value: ' ' }
-        }
-    ]
+    []
 }
