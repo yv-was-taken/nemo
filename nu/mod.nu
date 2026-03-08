@@ -47,6 +47,9 @@ export-env {
     # Sets left prompt; does NOT touch PROMPT_COMMAND_RIGHT (user's mommy etc.)
     $env.PROMPT_COMMAND = {|| nemo-prompt }
     $env.TRANSIENT_PROMPT_COMMAND = {|| nemo-transient-prompt }
+    # Nemo's prompt already includes ❯, so blank out nushell's default "> " indicator
+    $env.PROMPT_INDICATOR = ""
+    $env.TRANSIENT_PROMPT_INDICATOR = ""
 
     # --- External completer ---
     # Must be set up before keybindings/menus upsert (nushell type inference quirk)
