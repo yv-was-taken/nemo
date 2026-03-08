@@ -65,7 +65,7 @@ export def nemo-prompt [] {
         $"(ansi green)❯(ansi reset) "
     }
 
-    $"(ansi cyan_bold)($dir)(ansi reset)($git)($duration)\n($prompt_char)"
+    $"(ansi cyan_bold)($dir)(ansi reset)($git)($duration) ($prompt_char)"
 }
 
 # Transient prompt — collapses previous prompts to minimal form
