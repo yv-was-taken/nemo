@@ -119,6 +119,13 @@ export def nemo-keybindings [] {
             mode: [emacs vi_insert]
             event: { send: historyhintwordcomplete }
         }
+        {
+            name: nemo_accept_hint_word_enter
+            modifier: control
+            keycode: enter
+            mode: [emacs vi_insert]
+            event: { send: historyhintwordcomplete }
+        }
     ]
 }
 
